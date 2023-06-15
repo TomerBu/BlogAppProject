@@ -1,0 +1,65 @@
+###Create a new Post:
+POST http://localhost:8080/api/v1/posts
+Content-Type: application/json
+Authorization: Basic user password
+
+{
+  "title": "Spring Security Password Managment",
+  "description": "Encoding passwords with password encoder",
+  "content": "Content"
+}
+
+###Create an invalid Post:
+POST http://localhost:8080/api/v1/posts
+Content-Type: application/json
+
+{
+  "title": "Spring Data Jpa",
+  "description": "Entities and repositories",
+  "content": "Entities and repositories"
+}
+
+
+###Create a new Post:
+POST http://localhost:8080/api/v1/posts
+Content-Type: application/json
+
+{
+  "title": "Spring Security",
+  "description": "Password Encoding",
+  "content": "Password Encoding"
+}
+
+### get all posts:
+GET http://localhost:8080/api/v1/posts
+Authorization: Basic admin admin
+
+### get a valid post by id:
+GET http://localhost:8080/api/v1/posts/1
+
+### get an invalid post by id:
+GET http://localhost:8080/api/v1/posts/10000
+
+### Update a post
+PUT http://localhost:8080/api/v1/posts/1
+Content-Type: application/json
+
+{
+  "title": "@NotNull Annotation prevents null values - @Valid!!!",
+  "description": "Validation Annotations for spring!",
+  "content": "Spring Data Validations!!"
+}
+
+
+### Delete A Post By ID
+DELETE http://localhost:8080/api/v1/posts/3
+
+### GET posts by page 1:
+GET http://localhost:8080/api/v1/posts/page?pageSize=2&pageNo=0
+
+### GET posts page 2:
+GET http://localhost:8080/api/v1/posts/page?pageSize=2&pageNo=1
+
+
+### GET posts page with sort and sort order:
+GET http://localhost:8080/api/v1/posts/page?pageSize=4&pageNo=0&sortBy=content&sortDir=asc
