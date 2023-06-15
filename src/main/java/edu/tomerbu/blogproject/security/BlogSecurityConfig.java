@@ -1,6 +1,5 @@
 package edu.tomerbu.blogproject.security;
 
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
@@ -12,7 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
-@EnableMethodSecurity(prePostEnabled = true, securedEnabled = true)
+@EnableMethodSecurity(securedEnabled = true)
 @EnableWebSecurity(debug = true)
 public class BlogSecurityConfig {
 
@@ -25,8 +24,7 @@ public class BlogSecurityConfig {
                     auth.requestMatchers("/api/v1/**").authenticated();
                     auth.anyRequest().permitAll();
                 })
-                .httpBasic(a -> {
-                })
+                .httpBasic(basic -> basic.authenticationEntryPoint(new BlogAuthenticationEntryPoint()))
                 .build();
     }
 

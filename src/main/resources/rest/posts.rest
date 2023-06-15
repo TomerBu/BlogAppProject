@@ -4,7 +4,7 @@ Content-Type: application/json
 Authorization: Basic user password
 
 {
-  "title": "Spring Security Password Managment",
+  "title": "Spring Security Password Management",
   "description": "Encoding passwords with password encoder",
   "content": "Content"
 }
