@@ -1,9 +1,22 @@
-###Create a new Post:
+###Create a new User:
 POST http://localhost:8080/api/v1/auth/signup
 Content-Type: application/json
 
 {
-  "email": "john@gmail.com",
-  "username": "jhon",
-  "password": "123456!"
+  "email": "mike@gmail.com",
+  "username": "mike",
+  "password": "Password1!"
 }
+
+###sign a User in:
+POST http://localhost:8080/api/v1/auth/signin
+Content-Type: application/json
+
+{
+  "username": "mike",
+  "password": "Password1!"
+}
+
+### Get all posts:
+GET http://localhost:8080/api/v1/posts
+Authorization: BEARER eyJhbciOiJIUzUxMiJ9.eyJzdWIiOiJtaWtlIiwiaWF0IjoxNjg3NDU3MDM3LCJleHAiOjE2OTAwNDkwMzd9.96RK3FIu8JxZJ9hxtH7avM14rBYxpAPIPRtBAaQsFRlxwABoqNC1cbKSBbZbShgqtDJPA_nvzF6IcJkHu9g0Qg
