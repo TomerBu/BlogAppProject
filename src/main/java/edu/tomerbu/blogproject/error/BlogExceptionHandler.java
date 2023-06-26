@@ -8,7 +8,6 @@ import org.springframework.http.ProblemDetail;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-
 import java.time.LocalDateTime;
 
 @ControllerAdvice
@@ -47,15 +46,13 @@ public class BlogExceptionHandler {
         return problemDetail;
     }
 
-
     @ExceptionHandler(DataIntegrityViolationException.class)
-    public ProblemDetail handleDataIntegrityViolationException(DataIntegrityViolationException e){
+    public ProblemDetail handleDataIntegrityViolationException(DataIntegrityViolationException e) {
         var problemDetail =
                 ProblemDetail.
                         forStatusAndDetail(HttpStatus.BAD_REQUEST, "Database save Failed");
 
-        if (e.getCause() instanceof ConstraintViolationException){
-            //TODO: ConstraintViolationException!
+        if (e.getCause() instanceof ConstraintViolationException) {
             problemDetail.setProperty("cause", "Constraint Violation");
         }
         //add details about the exception:
@@ -64,7 +61,6 @@ public class BlogExceptionHandler {
         return problemDetail;
     }
 
-    //BadRequestException + ResourceNotFoundException extends BlogException
     @ExceptionHandler(BlogException.class)
     public ProblemDetail handleBlogException(BlogException e) {
         var problemDetail =

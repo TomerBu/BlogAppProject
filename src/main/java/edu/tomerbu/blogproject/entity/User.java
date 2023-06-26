@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -23,6 +24,9 @@ public class User {
     private String email;
     @NotNull
     private String password;
+
+    @OneToMany
+    private List<Comment> comments;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(

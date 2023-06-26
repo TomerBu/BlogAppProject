@@ -19,4 +19,8 @@ Content-Type: application/json
 
 ### Get all posts:
 GET http://localhost:8080/api/v1/posts
-Authorization: BEARER eyJhbciOiJIUzUxMiJ9.eyJzdWIiOiJtaWtlIiwiaWF0IjoxNjg3NDU3MDM3LCJleHAiOjE2OTAwNDkwMzd9.96RK3FIu8JxZJ9hxtH7avM14rBYxpAPIPRtBAaQsFRlxwABoqNC1cbKSBbZbShgqtDJPA_nvzF6IcJkHu9g0Qg
+Authorization: BEARER eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJtaWtlIiwiaWF0IjoxNjg3NzkzMjQ0LCJleHAiOjE2OTAzODUyNDR9.u0PPpp7bmAQEttki1zdmblYaP9oY_v158tF9DPFvoplyH_2gqGPkfN9slYX60l_rFWR1IqsbNVI44DDWCEP6EA
+
+### Get all posts:
+GET http://localhost:8080/api/v1/posts
+Authorization: Basic mike Password1!

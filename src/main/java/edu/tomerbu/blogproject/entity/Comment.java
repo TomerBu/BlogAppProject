@@ -8,7 +8,7 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString //relationships
+@ToString
 @Builder
 @Entity
 public class Comment {
@@ -17,9 +17,8 @@ public class Comment {
     @GeneratedValue
     private Long id;
 
-    private String username;
-
-    private String email;
+    @ManyToOne
+    private User user;
 
     private String comment;
 
@@ -29,5 +28,3 @@ public class Comment {
     @JoinColumn(name = "post_id", nullable = false)
     private Post post;
 }
-
-//BREAK EARLY:

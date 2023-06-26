@@ -1,16 +1,14 @@
 package edu.tomerbu.blogproject.controller;
 
-
 import edu.tomerbu.blogproject.dto.CommentRequestDto;
 import edu.tomerbu.blogproject.dto.CommentResponseDto;
 import edu.tomerbu.blogproject.dto.CommentUpdateRequestDto;
 import edu.tomerbu.blogproject.service.CommentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
-
-import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -19,14 +17,14 @@ import java.util.List;
 public class CommentsController {
     private final CommentService commentService;
 
-    //http://localhost:8080/api/v1/posts/4/comments
     @PostMapping("/posts/{id}/comments")
     public ResponseEntity<CommentResponseDto> createComment(
             @PathVariable(name = "id") long postId,
             @RequestBody CommentRequestDto dto,
-            UriComponentsBuilder uriBuilder
+            UriComponentsBuilder uriBuilder,
+            Authentication authentication
     ) {
-        var saved = commentService.createComment(postId, dto);
+        var saved = commentService.createComment(postId, dto, authentication);
         var uri =
                 uriBuilder
                         .path("/api/v1/posts/{post_id}/{comment_id}")
@@ -46,14 +44,19 @@ public class CommentsController {
     @PutMapping("/comments/{id}")
     public ResponseEntity<CommentResponseDto> updateCommentById(
             @PathVariable("id") long commentId,
-            @RequestBody CommentUpdateRequestDto dto
+            @RequestBody CommentUpdateRequestDto dto,
+            Authentication authentication
     ) {
-        return ResponseEntity.ok(commentService.updateComment(commentId, dto));
+        return ResponseEntity.ok(
+                commentService.updateComment(commentId, dto, authentication
+                ));
     }
 
     @DeleteMapping("/comments/{id}")
-    public ResponseEntity<CommentResponseDto> deleteCommentById(@PathVariable long id) {
-        return ResponseEntity.ok(commentService.deleteCommentById(id));
+    public ResponseEntity<CommentResponseDto> deleteCommentById(
+            @PathVariable long id, Authentication authentication) {
+        return ResponseEntity.ok(
+                commentService.deleteCommentById(id, authentication
+                ));
     }
-
 }

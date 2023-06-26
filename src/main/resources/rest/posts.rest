@@ -1,7 +1,7 @@
 ###Create a new Post:
 POST http://localhost:8080/api/v1/posts
 Content-Type: application/json
-Authorization: Basic user password
+Authorization: Basic admin admin
 
 {
   "title": "Spring Security Password Management",
@@ -9,9 +9,10 @@ Authorization: Basic user password
   "content": "Content"
 }
 
-###Create an invalid Post:
+###Create another Post:
 POST http://localhost:8080/api/v1/posts
 Content-Type: application/json
+Authorization: Basic admin admin
 
 {
   "title": "Spring Data Jpa",
@@ -19,10 +20,10 @@ Content-Type: application/json
   "content": "Entities and repositories"
 }
 
-
 ###Create a new Post:
 POST http://localhost:8080/api/v1/posts
 Content-Type: application/json
+Authorization: Basic admin admin
 
 {
   "title": "Spring Security",
@@ -32,34 +33,39 @@ Content-Type: application/json
 
 ### get all posts:
 GET http://localhost:8080/api/v1/posts
-Authorization: Basic admin admin
+Authorization: Basic mike Password1!
 
 ### get a valid post by id:
 GET http://localhost:8080/api/v1/posts/1
+Authorization: Basic mike Password1!
 
 ### get an invalid post by id:
 GET http://localhost:8080/api/v1/posts/10000
+Authorization: Basic mike Password1!
 
 ### Update a post
 PUT http://localhost:8080/api/v1/posts/1
+Authorization: Basic admin admin
 Content-Type: application/json
 
 {
-  "title": "@NotNull Annotation prevents null values - @Valid!!!",
+  "title": "@NotNull Annotation prevents null values - @Valid!!",
   "description": "Validation Annotations for spring!",
   "content": "Spring Data Validations!!"
 }
 
-
 ### Delete A Post By ID
-DELETE http://localhost:8080/api/v1/posts/3
+DELETE http://localhost:8080/api/v1/posts/53
+Authorization: Basic mike Password1!
 
 ### GET posts by page 1:
 GET http://localhost:8080/api/v1/posts/page?pageSize=2&pageNo=0
+Authorization: Basic mike Password1!
 
 ### GET posts page 2:
 GET http://localhost:8080/api/v1/posts/page?pageSize=2&pageNo=1
-
+Authorization: Basic mike Password1!
 
 ### GET posts page with sort and sort order:
 GET http://localhost:8080/api/v1/posts/page?pageSize=4&pageNo=0&sortBy=content&sortDir=asc
+Authorization: Basic mike Password1!

@@ -1,7 +1,7 @@
 package edu.tomerbu.blogproject.service;
 
 import edu.tomerbu.blogproject.dto.SignUpRequestDto;
-import edu.tomerbu.blogproject.dto.SignUpResponseDto;
+import edu.tomerbu.blogproject.dto.UserResponseDto;
 import edu.tomerbu.blogproject.entity.User;
 import edu.tomerbu.blogproject.error.BadRequestException;
 import edu.tomerbu.blogproject.error.BlogException;
@@ -17,6 +17,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -30,7 +32,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     private final PasswordEncoder passwordEncoder;
 
     @Transactional
-    public SignUpResponseDto signUp(SignUpRequestDto dto) {
+    public UserResponseDto signUp(SignUpRequestDto dto) {
         //1) get the user role from role repository:
         val userRole = roleRepository.findByNameIgnoreCase("ROLE_USER")
                 .orElseThrow(() -> new BlogException("Please contact admin"));
@@ -50,11 +52,12 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 dto.getUsername(),
                 dto.getEmail(),
                 passwordEncoder.encode(dto.getPassword().trim()),
+                List.of(),
                 Set.of(userRole)
         );
 
         var savedUser = userRepository.save(user);
-        return modelMapper.map(savedUser, SignUpResponseDto.class);
+        return modelMapper.map(savedUser, UserResponseDto.class);
     }
 
     @Override

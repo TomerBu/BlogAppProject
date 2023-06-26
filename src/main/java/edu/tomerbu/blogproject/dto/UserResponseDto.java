@@ -5,11 +5,12 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+//User without a password:
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class SignUpResponseDto {
+public class UserResponseDto {
     private long id;
     private String username;    
     private String email;

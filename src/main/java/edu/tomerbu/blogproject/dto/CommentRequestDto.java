@@ -10,7 +10,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public final class CommentRequestDto {
-    private String username;
-    private String email;
     private String comment;
 }

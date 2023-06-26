@@ -2,7 +2,7 @@ package edu.tomerbu.blogproject.controller;
 
 import edu.tomerbu.blogproject.dto.SignInRequestDto;
 import edu.tomerbu.blogproject.dto.SignUpRequestDto;
-import edu.tomerbu.blogproject.dto.SignUpResponseDto;
+import edu.tomerbu.blogproject.dto.UserResponseDto;
 import edu.tomerbu.blogproject.security.JWTProvider;
 import edu.tomerbu.blogproject.service.UserDetailsServiceImpl;
 import jakarta.validation.Valid;
@@ -25,7 +25,7 @@ public class AuthController {
     private final PasswordEncoder passwordEncoder;
 
     @PostMapping("/signup")
-    public ResponseEntity<SignUpResponseDto> signUp(@RequestBody @Valid SignUpRequestDto dto) {
+    public ResponseEntity<UserResponseDto> signUp(@RequestBody @Valid SignUpRequestDto dto) {
         return new ResponseEntity<>(authService.signUp(dto), HttpStatus.CREATED);
     }
 

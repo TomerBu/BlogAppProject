@@ -23,7 +23,6 @@ public class PostController {
 
     @PostMapping
     @PreAuthorize("hasRole('ADMIN')")
-
     public ResponseEntity<PostResponseDto> createPost(
             @RequestBody @Valid PostRequestDto dto, UriComponentsBuilder uriBuilder) {
 
@@ -47,9 +46,8 @@ public class PostController {
     }
 
     //api/v1/posts/3
-    //
-    //Body dto
     @PutMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<PostResponseDto> updatePostById(
             @Valid @NotNull @PathVariable long id,
             @Valid @RequestBody PostRequestDto dto) {
@@ -58,11 +56,11 @@ public class PostController {
 
     //DELETE api/v1/posts/3
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<PostResponseDto> deletePostById(
             @Valid @NotNull @PathVariable long id) {
         return ResponseEntity.ok(postService.deletePostById(id));
     }
-
 
     //GET api/v1/posts/page
     //GET api/v1/posts/page?pageSize=25&pageNo=2&sortBy=title&sortDir=desc
@@ -75,5 +73,4 @@ public class PostController {
     ) {
         return ResponseEntity.ok(postService.getAllPosts(pageNo, pageSize, sortBy, sortDir));
     }
-
 }

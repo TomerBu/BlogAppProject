@@ -11,7 +11,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public final class CommentResponseDto {
     private long id;
-    private String username;
-    private String email;
+    private UserResponseDto user;
     private String comment;
 }
