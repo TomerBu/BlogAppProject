@@ -4,6 +4,7 @@ import edu.tomerbu.blogproject.dto.CommentRequestDto;
 import edu.tomerbu.blogproject.dto.CommentResponseDto;
 import edu.tomerbu.blogproject.dto.CommentUpdateRequestDto;
 import edu.tomerbu.blogproject.service.CommentService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -14,6 +15,9 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1")
+@SecurityRequirement(
+        name = "Bearer Authentication"
+)
 public class CommentsController {
     private final CommentService commentService;
 

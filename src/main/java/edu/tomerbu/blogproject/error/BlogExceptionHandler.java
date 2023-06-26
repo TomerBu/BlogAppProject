@@ -8,10 +8,14 @@ import org.springframework.http.ProblemDetail;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
+
 import java.time.LocalDateTime;
 
 @ControllerAdvice
 public class BlogExceptionHandler {
+
+    @ResponseStatus(HttpStatus.NOT_FOUND)//404
     @ExceptionHandler(ResourceNotFoundException.class)
     public ProblemDetail handleResourceNotFoundException(ResourceNotFoundException e) {
 
@@ -24,6 +28,7 @@ public class BlogExceptionHandler {
         return problemDetails;
     }
 
+    @ResponseStatus(HttpStatus.BAD_REQUEST)//400
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ProblemDetail handleMethodArgumentNotValidException(MethodArgumentNotValidException e) {
 
@@ -46,6 +51,7 @@ public class BlogExceptionHandler {
         return problemDetail;
     }
 
+    @ResponseStatus(HttpStatus.BAD_REQUEST)//400
     @ExceptionHandler(DataIntegrityViolationException.class)
     public ProblemDetail handleDataIntegrityViolationException(DataIntegrityViolationException e) {
         var problemDetail =
@@ -61,6 +67,7 @@ public class BlogExceptionHandler {
         return problemDetail;
     }
 
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)//500
     @ExceptionHandler(BlogException.class)
     public ProblemDetail handleBlogException(BlogException e) {
         var problemDetail =
@@ -78,5 +85,4 @@ public class BlogExceptionHandler {
         problemDetail.setProperty("timestamp", LocalDateTime.now());
         return problemDetail;
     }
-
 }

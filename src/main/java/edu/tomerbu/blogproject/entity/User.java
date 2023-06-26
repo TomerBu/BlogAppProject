@@ -25,7 +25,11 @@ public class User {
     @NotNull
     private String password;
 
-    @OneToMany
+    @OneToMany(
+            mappedBy = "user",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
     private List<Comment> comments;
 
     @ManyToMany(fetch = FetchType.EAGER)
