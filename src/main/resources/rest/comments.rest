@@ -20,12 +20,12 @@ GET http://localhost:8080/api/v1/posts/10000/comments
 Authorization: Basic mike Password1!
 
 ### Update Comment by commentId:
-PUT http://localhost:8080/api/v1/comments/3
+PUT http://localhost:8080/api/v1/comments/2
 Authorization: Basic mike Password1!
 Content-Type: application/json
 
 {
-  "comment": "Thank you for the post"
+  "comment": "Thank you for the post!"
 }
 
 ### delete a comment by comment id:
