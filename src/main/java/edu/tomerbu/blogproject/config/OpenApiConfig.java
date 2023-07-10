@@ -12,8 +12,8 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @OpenAPIDefinition(
         info = @Info(
-                title = "My Blog Project",
-                description = "Manage my blog posts",
+                title = "Blog Project",
+                description = "Manage our blog posts",
                 version = "1.0",
                 contact = @Contact(
                         name = "Tomerbu",

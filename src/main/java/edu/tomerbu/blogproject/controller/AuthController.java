@@ -1,6 +1,7 @@
 package edu.tomerbu.blogproject.controller;
 
 import edu.tomerbu.blogproject.dto.SignInRequestDto;
+import edu.tomerbu.blogproject.dto.SignInResponseDto;
 import edu.tomerbu.blogproject.dto.SignUpRequestDto;
 import edu.tomerbu.blogproject.dto.UserResponseDto;
 import edu.tomerbu.blogproject.security.JWTProvider;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
@@ -30,7 +30,7 @@ public class AuthController {
     }
 
     @PostMapping("/signin")
-    public ResponseEntity<Object> signIn(@RequestBody @Valid SignInRequestDto dto){
+    public ResponseEntity<SignInResponseDto> signIn(@RequestBody @Valid SignInRequestDto dto) {
         var user = authService.loadUserByUsername(dto.getUsername());
 
         var savedPassword = user.getPassword();
@@ -40,7 +40,7 @@ public class AuthController {
             //grant:
             var token = jwtProvider.generateToken(user.getUsername());
 
-            return ResponseEntity.ok(Map.of("jwt", token));
+            return ResponseEntity.ok(new SignInResponseDto(token));
         }
         return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
     }
